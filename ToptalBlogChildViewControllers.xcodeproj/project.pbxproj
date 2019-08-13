@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C6B9825623034E2900EA3551 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B9825523034E2900EA3551 /* AppDelegate.swift */; };
+		C6B9825823034E2900EA3551 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B9825723034E2900EA3551 /* ViewController.swift */; };
+		C6B9825B23034E2900EA3551 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B9825923034E2900EA3551 /* Main.storyboard */; };
+		C6B9825D23034E2A00EA3551 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6B9825C23034E2A00EA3551 /* Assets.xcassets */; };
+		C6B9826023034E2A00EA3551 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B9825E23034E2A00EA3551 /* LaunchScreen.storyboard */; };
+		C6B9826823034E8D00EA3551 /* RSSFeedReaderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B9826723034E8D00EA3551 /* RSSFeedReaderTableViewController.swift */; };
+		C6B9826D23034EF500EA3551 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B9826C23034EF500EA3551 /* FeedItem.swift */; };
+		C6B9826F23034FAC00EA3551 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B9826E23034FAC00EA3551 /* Feed.swift */; };
+		C6B9827123034FF300EA3551 /* FeedWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B9827023034FF300EA3551 /* FeedWrapper.swift */; };
+		C6B982732303504000EA3551 /* FeedReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B982722303504000EA3551 /* FeedReader.swift */; };
+		C6B98275230350D100EA3551 /* FeedReaderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B98274230350D100EA3551 /* FeedReaderError.swift */; };
+		C6B98279230358D200EA3551 /* RSSFeedItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6B98277230358D200EA3551 /* RSSFeedItemTableViewCell.xib */; };
+		C6B9827B23035A1500EA3551 /* RSSFeedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B9827A23035A1500EA3551 /* RSSFeedItemTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C6B9825223034E2900EA3551 /* ToptalBlogChildViewControllers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToptalBlogChildViewControllers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6B9825523034E2900EA3551 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C6B9825723034E2900EA3551 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C6B9825A23034E2900EA3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C6B9825C23034E2A00EA3551 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C6B9825F23034E2A00EA3551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C6B9826123034E2A00EA3551 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6B9826723034E8D00EA3551 /* RSSFeedReaderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedReaderTableViewController.swift; sourceTree = "<group>"; };
+		C6B9826C23034EF500EA3551 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
+		C6B9826E23034FAC00EA3551 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		C6B9827023034FF300EA3551 /* FeedWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWrapper.swift; sourceTree = "<group>"; };
+		C6B982722303504000EA3551 /* FeedReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReader.swift; sourceTree = "<group>"; };
+		C6B98274230350D100EA3551 /* FeedReaderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderError.swift; sourceTree = "<group>"; };
+		C6B98277230358D200EA3551 /* RSSFeedItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedItemTableViewCell.xib; sourceTree = "<group>"; };
+		C6B9827A23035A1500EA3551 /* RSSFeedItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSFeedItemTableViewCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6B9824F23034E2900EA3551 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C6B9824923034E2900EA3551 = {
+			isa = PBXGroup;
+			children = (
+				C6B9825423034E2900EA3551 /* ToptalBlogChildViewControllers */,
+				C6B9825323034E2900EA3551 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C6B9825323034E2900EA3551 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6B9825223034E2900EA3551 /* ToptalBlogChildViewControllers.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6B9825423034E2900EA3551 /* ToptalBlogChildViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C6B9826B23034ECF00EA3551 /* Feed Items */,
+				C6B9826A23034EB700EA3551 /* Networking */,
+				C6B9825523034E2900EA3551 /* AppDelegate.swift */,
+				C6B9825723034E2900EA3551 /* ViewController.swift */,
+				C6B9826923034E9100EA3551 /* Massive View Controller */,
+				C6B9825923034E2900EA3551 /* Main.storyboard */,
+				C6B9825C23034E2A00EA3551 /* Assets.xcassets */,
+				C6B9825E23034E2A00EA3551 /* LaunchScreen.storyboard */,
+				C6B9826123034E2A00EA3551 /* Info.plist */,
+			);
+			path = ToptalBlogChildViewControllers;
+			sourceTree = "<group>";
+		};
+		C6B9826923034E9100EA3551 /* Massive View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C6B9826723034E8D00EA3551 /* RSSFeedReaderTableViewController.swift */,
+				C6B9827A23035A1500EA3551 /* RSSFeedItemTableViewCell.swift */,
+				C6B98277230358D200EA3551 /* RSSFeedItemTableViewCell.xib */,
+			);
+			path = "Massive View Controller";
+			sourceTree = "<group>";
+		};
+		C6B9826A23034EB700EA3551 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C6B982722303504000EA3551 /* FeedReader.swift */,
+				C6B98274230350D100EA3551 /* FeedReaderError.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C6B9826B23034ECF00EA3551 /* Feed Items */ = {
+			isa = PBXGroup;
+			children = (
+				C6B9826C23034EF500EA3551 /* FeedItem.swift */,
+				C6B9826E23034FAC00EA3551 /* Feed.swift */,
+				C6B9827023034FF300EA3551 /* FeedWrapper.swift */,
+			);
+			path = "Feed Items";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6B9825123034E2900EA3551 /* ToptalBlogChildViewControllers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6B9826423034E2A00EA3551 /* Build configuration list for PBXNativeTarget "ToptalBlogChildViewControllers" */;
+			buildPhases = (
+				C6B9824E23034E2900EA3551 /* Sources */,
+				C6B9824F23034E2900EA3551 /* Frameworks */,
+				C6B9825023034E2900EA3551 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ToptalBlogChildViewControllers;
+			productName = ToptalBlogChildViewControllers;
+			productReference = C6B9825223034E2900EA3551 /* ToptalBlogChildViewControllers.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6B9824A23034E2900EA3551 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "Avery Pierce";
+				TargetAttributes = {
+					C6B9825123034E2900EA3551 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = C6B9824D23034E2900EA3551 /* Build configuration list for PBXProject "ToptalBlogChildViewControllers" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C6B9824923034E2900EA3551;
+			productRefGroup = C6B9825323034E2900EA3551 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C6B9825123034E2900EA3551 /* ToptalBlogChildViewControllers */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6B9825023034E2900EA3551 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6B9826023034E2A00EA3551 /* LaunchScreen.storyboard in Resources */,
+				C6B98279230358D200EA3551 /* RSSFeedItemTableViewCell.xib in Resources */,
+				C6B9825D23034E2A00EA3551 /* Assets.xcassets in Resources */,
+				C6B9825B23034E2900EA3551 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6B9824E23034E2900EA3551 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6B9826D23034EF500EA3551 /* FeedItem.swift in Sources */,
+				C6B98275230350D100EA3551 /* FeedReaderError.swift in Sources */,
+				C6B9826F23034FAC00EA3551 /* Feed.swift in Sources */,
+				C6B9825823034E2900EA3551 /* ViewController.swift in Sources */,
+				C6B9827123034FF300EA3551 /* FeedWrapper.swift in Sources */,
+				C6B9825623034E2900EA3551 /* AppDelegate.swift in Sources */,
+				C6B9827B23035A1500EA3551 /* RSSFeedItemTableViewCell.swift in Sources */,
+				C6B982732303504000EA3551 /* FeedReader.swift in Sources */,
+				C6B9826823034E8D00EA3551 /* RSSFeedReaderTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C6B9825923034E2900EA3551 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6B9825A23034E2900EA3551 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C6B9825E23034E2A00EA3551 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6B9825F23034E2A00EA3551 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C6B9826223034E2A00EA3551 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C6B9826323034E2A00EA3551 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C6B9826523034E2A00EA3551 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ToptalBlogChildViewControllers/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.averypierce.ToptalBlogChildViewControllers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C6B9826623034E2A00EA3551 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ToptalBlogChildViewControllers/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.averypierce.ToptalBlogChildViewControllers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6B9824D23034E2900EA3551 /* Build configuration list for PBXProject "ToptalBlogChildViewControllers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6B9826223034E2A00EA3551 /* Debug */,
+				C6B9826323034E2A00EA3551 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6B9826423034E2A00EA3551 /* Build configuration list for PBXNativeTarget "ToptalBlogChildViewControllers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6B9826523034E2A00EA3551 /* Debug */,
+				C6B9826623034E2A00EA3551 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6B9824A23034E2900EA3551 /* Project object */;
+}
