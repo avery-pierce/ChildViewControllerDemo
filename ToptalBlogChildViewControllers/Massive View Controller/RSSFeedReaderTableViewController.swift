@@ -20,6 +20,8 @@ class RSSFeedReaderTableViewController: UITableViewController {
     var backgroundErrorView: UIView!
     var backgroundErrorLabel: UILabel!
     var backgroundErrorRetryButton: UIButton!
+    
+    var backgroundEmptyResultsView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,11 @@ class RSSFeedReaderTableViewController: UITableViewController {
         case .success(let wrapper):
             feedItems = wrapper.items
             error = nil
-            showResults()
+            if wrapper.items.count > 0 {
+                showResults()
+            } else {
+                showEmptyResults()
+            }
         case .failure(let resultError):
             feedItems = nil
             error = resultError
@@ -59,6 +65,7 @@ class RSSFeedReaderTableViewController: UITableViewController {
             showErrorView()
         }
         
+        refreshControl?.endRefreshing()
         tableView.reloadData()
     }
     
@@ -70,19 +77,28 @@ class RSSFeedReaderTableViewController: UITableViewController {
     func showLoadingView() {
         backgroundLoadingView.isHidden = false
         backgroundErrorView.isHidden = true
+        backgroundEmptyResultsView.isHidden = true
         tableView.separatorStyle = .none
     }
     
     func showErrorView() {
         backgroundLoadingView.isHidden = true
         backgroundErrorView.isHidden = false
+        backgroundEmptyResultsView.isHidden = true
+        tableView.separatorStyle = .none
+    }
+    
+    func showEmptyResults() {
+        backgroundLoadingView.isHidden = true
+        backgroundErrorView.isHidden = true
+        backgroundEmptyResultsView.isHidden = false
         tableView.separatorStyle = .none
     }
     
     func showResults() {
-        refreshControl?.endRefreshing()
         backgroundLoadingView.isHidden = true
         backgroundErrorView.isHidden = true
+        backgroundEmptyResultsView.isHidden = true
         tableView.separatorStyle = .singleLine
     }
     
@@ -91,6 +107,7 @@ class RSSFeedReaderTableViewController: UITableViewController {
     func loadBackgroundView() {
         loadBackgroundLoadingView()
         loadBackgroundErrorView()
+        loadBackgroundEmptyResultsView()
         
         backgroundView = UIView()
         
@@ -104,6 +121,11 @@ class RSSFeedReaderTableViewController: UITableViewController {
         backgroundErrorView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         backgroundErrorView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
         backgroundErrorView.widthAnchor.constraint(lessThanOrEqualTo: backgroundView.widthAnchor, multiplier: 0.8).isActive = true
+        
+        // Embed the background results view
+        backgroundView.addSubview(backgroundEmptyResultsView)
+        backgroundEmptyResultsView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
+        backgroundEmptyResultsView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
         
         tableView.backgroundView = backgroundView
     }
@@ -153,6 +175,34 @@ class RSSFeedReaderTableViewController: UITableViewController {
         stackView.spacing = 8.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         backgroundErrorView = stackView
+    }
+    
+    func loadBackgroundEmptyResultsView() {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Configure the text label for the empty results
+        let emptyResultsLabel = UILabel()
+        emptyResultsLabel.textAlignment = .center
+        emptyResultsLabel.numberOfLines = 0
+        emptyResultsLabel.textColor = .darkGray
+        emptyResultsLabel.text = NSLocalizedString("No Results", comment: "communicates that there are no feed results to show")
+        emptyResultsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Configure the reload button
+        let reloadButton = UIButton(type: .roundedRect)
+        let buttonTitle = NSLocalizedString("Reload", comment: "call to action after 0 results are returned")
+        reloadButton.setTitle(buttonTitle, for: .normal)
+        reloadButton.addTarget(self, action: #selector(RSSFeedReaderTableViewController.didTapRetryButton(_:)), for: .touchUpInside)
+        reloadButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Assemble the stack view for the UI
+        let stackView = UIStackView(arrangedSubviews: [imageView, emptyResultsLabel, reloadButton])
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 8.0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundEmptyResultsView = stackView
     }
     
     func registerCells() {
@@ -220,6 +270,11 @@ class RSSFeedReaderTableViewController: UITableViewController {
     
     func simulateError(_ error: FeedReaderError) {
         simulateResult(.failure(error))
+    }
+    
+    func simulateEmptyResults() {
+        let mockResults = FeedWrapper(status: nil, feed: nil, items: [])
+        simulateResult(.success(mockResults))
     }
     
     func simulateResult(_ result: Result<FeedWrapper, FeedReaderError>) {
