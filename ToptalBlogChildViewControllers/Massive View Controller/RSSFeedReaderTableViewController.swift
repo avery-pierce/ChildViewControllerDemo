@@ -48,6 +48,8 @@ class RSSFeedReaderTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Load State Handling
+    
     func handleResult(_ result: Result<FeedWrapper, FeedReaderError>) {
         switch result {
         case .success(let wrapper):
@@ -102,7 +104,7 @@ class RSSFeedReaderTableViewController: UITableViewController {
         tableView.separatorStyle = .singleLine
     }
     
-    // MARK: - Setup
+    // MARK: - Setup: Load Background Views
     
     func loadBackgroundView() {
         loadBackgroundLoadingView()
@@ -207,6 +209,8 @@ class RSSFeedReaderTableViewController: UITableViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         backgroundEmptyResultsView = stackView
     }
+    
+    // MARK: - Setup: Prepare Table View
     
     func registerCells() {
         let nib = UINib(nibName: "RSSFeedItemTableViewCell", bundle: nil)
