@@ -47,4 +47,5 @@ class FeedReader {
     }
     
     static let toptalBlog = FeedReader(url: URL(string: "https://www.toptal.com/blog.rss")!)
+    static let toptalEngineeringBlog = FeedReader(url: URL(string: "https://www.toptal.com/developers/blog.rss")!)
 }

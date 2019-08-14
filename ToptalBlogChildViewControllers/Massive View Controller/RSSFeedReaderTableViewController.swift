@@ -25,9 +25,13 @@ class RSSFeedReaderTableViewController: UITableViewController {
         super.viewDidLoad()
 
         title = NSLocalizedString("Toptal Blog", comment: "screen title")
+        
+        // Setup the table view
         loadBackgroundView()
         setupPullToRefresh()
         registerCells()
+        
+        // Begin loading the content
         initialLoad()
     }
     
@@ -36,20 +40,8 @@ class RSSFeedReaderTableViewController: UITableViewController {
         loadFeed()
     }
     
-    func loadFeed(withDelay delay: TimeInterval = 0.0) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
-            FeedReader.toptalBlog.loadFeed { [weak self] (result) in
-                self?.handleResult(result)
-            }
-        })
-    }
-    
-    func simulateError(_ error: FeedReaderError) {
-        simulateResult(.failure(error))
-    }
-    
-    func simulateResult(_ result: Result<FeedWrapper, FeedReaderError>) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+    func loadFeed() {
+        FeedReader.toptalEngineeringBlog.loadFeed { [weak self] (result) in
             self?.handleResult(result)
         }
     }
@@ -102,10 +94,12 @@ class RSSFeedReaderTableViewController: UITableViewController {
         
         backgroundView = UIView()
         
+        // Embed the loading view
         backgroundView.addSubview(backgroundLoadingView)
         backgroundLoadingView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         backgroundLoadingView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
         
+        // Embed the error view
         backgroundView.addSubview(backgroundErrorView)
         backgroundErrorView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         backgroundErrorView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
@@ -119,11 +113,13 @@ class RSSFeedReaderTableViewController: UITableViewController {
         activityIndicator.startAnimating()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
+        // Configure the label for the loading state
         let loadingLabel = UILabel()
         loadingLabel.text = NSLocalizedString("Loading...", comment: "presented with a loading spinner")
         loadingLabel.textColor = .darkGray
         loadingLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        // Assemble the stack view for the error UI
         let stackView = UIStackView(arrangedSubviews: [activityIndicator, loadingLabel])
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -136,18 +132,21 @@ class RSSFeedReaderTableViewController: UITableViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
+        // Configure the text label for the error message
         backgroundErrorLabel = UILabel()
         backgroundErrorLabel.textAlignment = .center
         backgroundErrorLabel.numberOfLines = 0
         backgroundErrorLabel.textColor = .darkGray
         backgroundErrorLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        // Configure the error retry button
         backgroundErrorRetryButton = UIButton(type: .roundedRect)
         let buttonTitle = NSLocalizedString("Retry", comment: "call to action after an error occurs")
         backgroundErrorRetryButton.setTitle(buttonTitle, for: .normal)
         backgroundErrorRetryButton.addTarget(self, action: #selector(RSSFeedReaderTableViewController.didTapRetryButton(_:)), for: .touchUpInside)
         backgroundErrorRetryButton.translatesAutoresizingMaskIntoConstraints = false
         
+        // Assemble the stack view for the error UI
         let stackView = UIStackView(arrangedSubviews: [imageView, backgroundErrorLabel, backgroundErrorRetryButton])
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -171,11 +170,13 @@ class RSSFeedReaderTableViewController: UITableViewController {
     
     @objc func didTapRetryButton(_ sender: UIButton!) {
         showLoadingView()
-        loadFeed(withDelay: 0.0)
+        loadFeed()
     }
     
     @objc func didPullToRefresh(_ sender: UIRefreshControl!) {
-        loadFeed(withDelay: 0.0)
+        // Do not display the loading view when doing a pull-to-refresh.
+        // The current table view content should remain visible.
+        loadFeed()
     }
 
     // MARK: - Table view data source
@@ -207,5 +208,23 @@ class RSSFeedReaderTableViewController: UITableViewController {
     
     enum ReuseIdentifiers {
         static let feedItem = "FeedItem"
+    }
+    
+    // MARK: - Debugging
+    
+    func loadFeed(withDelay delay: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
+            self?.loadFeed()
+        })
+    }
+    
+    func simulateError(_ error: FeedReaderError) {
+        simulateResult(.failure(error))
+    }
+    
+    func simulateResult(_ result: Result<FeedWrapper, FeedReaderError>) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.handleResult(result)
+        }
     }
 }
