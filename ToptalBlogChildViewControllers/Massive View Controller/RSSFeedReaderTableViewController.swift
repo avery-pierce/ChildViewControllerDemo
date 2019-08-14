@@ -152,6 +152,8 @@ class RSSFeedReaderTableViewController: UITableViewController {
     
     func loadBackgroundErrorView() {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "WarningSign_256")
+        imageView.tintColor = .lightGray
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         // Configure the text label for the error message
@@ -179,6 +181,7 @@ class RSSFeedReaderTableViewController: UITableViewController {
     
     func loadBackgroundEmptyResultsView() {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "ToptalIcon_128")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         // Configure the text label for the empty results
