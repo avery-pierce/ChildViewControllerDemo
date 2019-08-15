@@ -7,16 +7,22 @@
 //
 
 import UIKit
-import SafariServices
+
+protocol FeedItemsTableViewControllerDelegate: class {
+    func feedItemsTableViewControllerDidPullToRefresh(_ viewController: FeedItemsTableViewController)
+    func feedItemsTableViewController(_ viewController: FeedItemsTableViewController, didSelect feedItem: FeedItem)
+}
 
 class FeedItemsTableViewController: UITableViewController {
     
+    weak var delegate: FeedItemsTableViewControllerDelegate?
     var feedItems: [FeedItem] = [] { didSet { reloadDataIfLoaded() } }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         registerCells()
+        setupRefreshControl()
     }
 
     func registerCells() {
@@ -24,9 +30,19 @@ class FeedItemsTableViewController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: ReuseIdentifiers.feedItem)
     }
     
+    func setupRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(FeedItemsTableViewController.didPullToRefresh(_:)), for: .valueChanged)
+        self.refreshControl = refreshControl
+    }
+    
     func reloadDataIfLoaded() {
         guard isViewLoaded else { return }
         tableView.reloadData()
+    }
+    
+    @objc func didPullToRefresh(_ sender: UIRefreshControl!) {
+        delegate?.feedItemsTableViewControllerDidPullToRefresh(self)
     }
     
     // MARK: - Table view data source
@@ -48,10 +64,7 @@ class FeedItemsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let feedItem = feedItems[indexPath.row]
-        guard let link = feedItem.link else { return }
-        
-        let viewController = SFSafariViewController(url: link)
-        self.present(viewController, animated: true, completion: nil)
+        delegate?.feedItemsTableViewController(self, didSelect: feedItem)
     }
     
     enum ReuseIdentifiers {

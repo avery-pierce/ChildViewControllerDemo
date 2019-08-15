@@ -7,30 +7,19 @@
 //
 
 import UIKit
+import SafariServices
 
 class FeedLoaderViewController: ContainerViewController {
     
-    var refreshControl: UIRefreshControl!
-    
-    lazy var feedItemsViewController: FeedItemsTableViewController = {
-        var viewController = FeedItemsTableViewController()
-        viewController.refreshControl = refreshControl
-        return viewController
-    }()
+    lazy var feedItemsViewController: FeedItemsTableViewController = FeedItemsTableViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = NSLocalizedString("Toptal Blog", comment: "screen title")
         
-        setupRefreshControl()
         displayLoadingScreen()
         loadFeed()
-    }
-    
-    func setupRefreshControl() {
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(FeedLoaderViewController.didPullToRefresh(_:)), for: .valueChanged)
     }
     
     func loadFeed() {
@@ -40,22 +29,12 @@ class FeedLoaderViewController: ContainerViewController {
     }
     
     func handleResult(_ result: Result<FeedWrapper, FeedReaderError>) {
-        refreshControl.endRefreshing()
-        
         switch result {
         case .success(let wrapper):
             displayResults(wrapper)
         case .failure(let resultError):
             displayErrorScreen(for: resultError)
         }
-    }
-    
-    // MARK: - User Input
-    
-    @objc func didPullToRefresh(_ sender: UIRefreshControl!) {
-        // Do not display the loading view when doing a pull-to-refresh.
-        // The current table view content should remain visible.
-        loadFeed()
     }
     
     // MARK: - Content Management
@@ -75,6 +54,8 @@ class FeedLoaderViewController: ContainerViewController {
     func displayResults(_ results: FeedWrapper) {
         if results.items.count > 0 {
             feedItemsViewController.feedItems = results.items
+            feedItemsViewController.refreshControl?.endRefreshing()
+            feedItemsViewController.delegate = self
             setContent(feedItemsViewController)
         } else {
             let viewController = EmptyResultsViewController()
@@ -118,5 +99,18 @@ extension FeedLoaderViewController: EmptyResultsViewControllerDelegate {
     func emptyResultsViewControllerDidTapReload(_ viewController: EmptyResultsViewController) {
         displayLoadingScreen()
         loadFeed()
+    }
+}
+
+extension FeedLoaderViewController: FeedItemsTableViewControllerDelegate {
+    func feedItemsTableViewControllerDidPullToRefresh(_ viewController: FeedItemsTableViewController) {
+        loadFeed()
+    }
+    
+    func feedItemsTableViewController(_ viewController: FeedItemsTableViewController, didSelect feedItem: FeedItem) {
+        guard let link = feedItem.link else { return }
+        
+        let viewController = SFSafariViewController(url: link)
+        self.present(viewController, animated: true, completion: nil)
     }
 }
