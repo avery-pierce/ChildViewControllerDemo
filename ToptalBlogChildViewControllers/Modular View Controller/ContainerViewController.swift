@@ -12,8 +12,6 @@ open class ContainerViewController: UIViewController {
     
     private(set) public var contentViewController: UIViewController?
     
-    private var activeLayoutConstraints: [NSLayoutConstraint] = []
-    
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,8 +20,8 @@ open class ContainerViewController: UIViewController {
     
     open func setContent(_ viewController: UIViewController?) {
         guard contentViewController != viewController else { return }
+        
         removeCurrentViewControllerIfNeeded()
-        viewController?.willMove(toParent: self)
         contentViewController = viewController
         addContentviewControllerToHierarchyIfLoaded()
         viewIfLoaded?.layoutIfNeeded()
@@ -44,10 +42,10 @@ open class ContainerViewController: UIViewController {
     private func addContentViewControllerToHierarchy() {
         guard let viewController = contentViewController else { return }
         
+        viewController.willMove(toParent: self)
         addChild(viewController)
         view.addSubview(viewController.view)
         activateLayoutConstraintsForContentViewController()
-        preferredContentSize = viewController.preferredContentSize
         viewController.didMove(toParent: self)
     }
     
@@ -55,28 +53,10 @@ open class ContainerViewController: UIViewController {
         guard let contentView = contentViewController?.viewIfLoaded else { return }
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        configureLayoutConstraints()
-    }
-    
-    private func configureLayoutConstraints() {
-        guard let contentView = contentViewController?.viewIfLoaded else { return }
-        
-        deactivateAllOwnedConstraints()
-        activate(contentView.topAnchor.constraint(equalTo: view.topAnchor))
-        activate(contentView.leftAnchor.constraint(equalTo: view.leftAnchor))
-        activate(contentView.rightAnchor.constraint(equalTo: view.rightAnchor))
-        activate(contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor))
+        contentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        contentView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         contentView.setNeedsLayout()
-    }
-    
-    private func activate(_ constraint: NSLayoutConstraint) {
-        constraint.isActive = true
-        activeLayoutConstraints.append(constraint)
-    }
-    
-    private func deactivateAllOwnedConstraints() {
-        while let constraint = activeLayoutConstraints.popLast() {
-            constraint.isActive = false
-        }
     }
 }
