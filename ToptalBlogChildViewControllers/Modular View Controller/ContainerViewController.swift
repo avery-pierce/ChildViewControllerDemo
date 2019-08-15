@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+open class ContainerViewController: UIViewController {
     
     private(set) public var contentViewController: UIViewController?
     
@@ -20,15 +20,17 @@ class ContainerViewController: UIViewController {
         addContentViewControllerToHierarchy()
     }
     
-    public func setContent(_ viewController: UIViewController?) {
+    open func setContent(_ viewController: UIViewController?) {
         guard contentViewController != viewController else { return }
         removeCurrentViewControllerIfNeeded()
+        viewController?.willMove(toParent: self)
         contentViewController = viewController
         addContentviewControllerToHierarchyIfLoaded()
         viewIfLoaded?.layoutIfNeeded()
     }
     
     private func removeCurrentViewControllerIfNeeded() {
+        contentViewController?.willMove(toParent: nil)
         contentViewController?.viewIfLoaded?.removeFromSuperview()
         contentViewController?.removeFromParent()
     }
@@ -77,10 +79,4 @@ class ContainerViewController: UIViewController {
             constraint.isActive = false
         }
     }
-    
-    open override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
-        super.preferredContentSizeDidChange(forChildContentContainer: container)
-        preferredContentSize = container.preferredContentSize
-    }
-
 }
